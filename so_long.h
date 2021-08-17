@@ -1,5 +1,5 @@
-#ifndef GAME_H
-# define GAME_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 /*include*/
 #include "./mlx/mlx.h"
@@ -32,8 +32,13 @@ typedef struct		s_map
 {
 	char			*map[256];
 	int				line;
+	int				width;
+	int				height;
 	int				item;
 	int				move;
+	int				player_x;
+	int				player_y;
+	struct s_map	*next;
 }					t_map;
 
 typedef struct		s_img
@@ -41,33 +46,34 @@ typedef struct		s_img
 	void			*img;
 	int				width;
 	int				height;
-	int				*addr;
-	int				bits_per_pixel;
-	int				size_line;
-	int				endian;
 }					t_img;
 
 /* mlx 창에 대한 정보 */
-typedef struct	s_mlx
+typedef struct		s_mlx
 {
-	void		*mlx;	// 연결 식별자
-	void		*win;	//지정된 창
-	int			player_x;
-	int			player_y;
-	t_map		*map;
-	t_img		wall;
-	t_img		floor;
-	t_img		exit;
-	t_img		player[5];
-	t_img		item[3];
-}				t_mlx;
-
-
+	void			*mlx;
+	void			*win;
+	int				width;
+	int				height;
+	t_map			*map;
+	t_img			wall;
+	t_img			floor;
+	t_img			back;
+	t_img			exit;
+	t_img			check;
+	t_img			cat[2];
+	t_img			player[5];
+	t_img			item[3];
+	t_img			num[10];
+	t_img			alpha[8];
+}					t_mlx;
 
 void	set_img(t_mlx *mlx);
 int		get_next_line(int fd, char **line);
-int		set_map(t_mlx *mlx, char *name);
+int		set_map(t_map *map, char *name);
+int all_map(t_mlx *mlx);
 int		key_press(int keycode, t_mlx *mlx);
 int		make_map(t_mlx *mlx);
+void	set_mlx(t_mlx *mlx);
 
 #endif

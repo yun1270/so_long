@@ -2,10 +2,12 @@ NAME 		= so_long
 LIBFT		= libft/libft.a
 
 SRCS =	./parsing/set_map.c\
+		./parsing/all_map.c\
 		./parsing/set_img.c\
-		key_press.c\
-		main.c\
-		gnl.c
+		./parsing/gnl.c\
+		./playing/make_map.c\
+		./playing/key_press.c\
+		main.c
 
 OBJS	=	$(SRCS:.c=.o)
 CC		= gcc

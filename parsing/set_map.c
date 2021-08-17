@@ -1,4 +1,4 @@
-#include "../game.h"
+#include "../so_long.h"
 
 int	open_file(char *name)
 {
@@ -11,7 +11,7 @@ int	open_file(char *name)
 	fd = open(name, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("ERROR: Unable to read map_file information\n", STDOUT_FILENO);
+		ft_putstr_fd("ERROR: Unable to read map_file!\n", STDOUT_FILENO);
 		exit(1);
 	}
 	return (fd);
@@ -71,18 +71,15 @@ int	open_map(t_map *m, char *name)
 	return (SUCCESS);
 }
 
-int	check_p_e(t_map *m, t_mlx *mlx)
+int	check_p(t_map *m)
 {
 	int	i;
 	int	j;
-	int	check[2];
+	int	p_num;
 
 	i = 0;
+	p_num = 0;
 	j = -1;
-	check[0] = 0;
-	check[1] = 0;
-	m->item = 0;
-	m->move = 0;
 	while (m->map[++i])
 	{
 		j = 0;
@@ -90,30 +87,36 @@ int	check_p_e(t_map *m, t_mlx *mlx)
 		{
 			if (m->map[i][j] == 'P')
 			{
-				check[0]++;
-				mlx->player_x = j;
-				mlx->player_y = i;
+				p_num++;
+				m->player_x = j;
+				m->player_y = i;
 			}
-			if (m->map[i][j] == 'E')
-				check[1]++;
 			if (m->map[i][j] == 'C')
 				m->item++;
 		}
 	}
-	if (check[0] == 1 && check[1] == 1)
+	if (p_num == 1)
 		return (SUCCESS);
 	return (FALSE);
 }
 
-int	set_map(t_mlx *mlx, char *name)
+int	set_map(t_map *map, char *name)
 {
-	name = ft_strjoin("./map/", name);
-	if (open_map(mlx->map, name) == FALSE)
+	int	i;
+
+	i = 0;
+	if (open_map(map, name) == FALSE)
 	{
-		ft_putstr_fd("ERROR: Unable to read map_file information\n", STDOUT_FILENO);
+		ft_putstr_fd("ERROR: Unable to read map_file!\n", STDOUT_FILENO);
 		exit(1);
 	}
-	if (check_p_e(mlx->map, mlx) == FALSE)
+	map->item = 0;
+	map->move = 0;
+	if (check_p(map) == FALSE)
 		return (FALSE);
+	while (map->map[i])
+		i++;
+	map->height = i + 1;
+	map->width = ft_strlen(map->map[0]) + 1;
 	return (SUCCESS);
 }
