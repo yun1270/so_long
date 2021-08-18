@@ -2,31 +2,31 @@ NAME 		= so_long
 LIBFT		= libft/libft.a
 
 SRCS =	./parsing/set_map.c\
+		./parsing/open_map.c\
 		./parsing/all_map.c\
 		./parsing/set_img.c\
 		./parsing/gnl.c\
-		./playing/make_map.c\
-		./playing/key_press.c\
+		./rendering/make_map.c\
+		./rendering/key_press.c\
 		main.c
 
-OBJS	=	$(SRCS:.c=.o)
+OBJS	= $(SRCS:.c=.o)
 CC		= gcc
-# CFLAGS		= -Wall -Wextra -Werror
-MFLAGS	=	-I. -Lmlx -lmlx -framework OpenGL -framework Appkit
-INCS	=	-I includes -I libft
-LFT		=	-L libft -lft -lncurses
+CFLAGS	= -Wall -Wextra -Werror
+MFLAGS	= -I. -Lmlx -lmlx -framework OpenGL -framework Appkit
+INCS	= -I includes -I libft
+LFT		= -L libft -lft -lncurses
 
 all : $(NAME)
 
 $(NAME) : $(LIBFT) $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) $(LFT) $(INCS) $(MFLAGS)
-	# $(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LFT) $(INCS)
+	$(CC) $(MFLAGS) -o $(NAME) $(OBJS) $(LFT) $(INCS)
 
 $(LIBFT) :
 	@make -C libft/
 
 .c.o :
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCS) $(MFLAGS)
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
 
 clean :
 	@make clean -C libft/

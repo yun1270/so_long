@@ -61,9 +61,9 @@ void	set_img(t_mlx *mlx)
 	mlx->player[2] = get_img("./img/left2.xpm", mlx);
 	mlx->player[3] = get_img("./img/right1.xpm", mlx);
 	mlx->player[4] = get_img("./img/right2.xpm", mlx);
-	mlx->item[1] = get_img("./img/item1.xpm", mlx);
-	mlx->item[2] = get_img("./img/item2.xpm", mlx);
-	mlx->item[0] = get_img("./img/item3.xpm", mlx);
+	mlx->item[0] = get_img("./img/item1.xpm", mlx);
+	mlx->item[1] = get_img("./img/item2.xpm", mlx);
+	mlx->item[2] = get_img("./img/item3.xpm", mlx);
 	set_num_img(mlx);
 	set_seoul_img(mlx);
 }

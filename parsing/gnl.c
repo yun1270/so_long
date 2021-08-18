@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "../so_long.h"
 
 static int	rt_val(char **line, char **buf, char *bn)
 {

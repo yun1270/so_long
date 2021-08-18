@@ -7,10 +7,10 @@ void	check_end_val(t_mlx *mlx, int i, int j, int fd)
 		ft_putchar_fd('1', fd);
 	else if (i == 1 && j == 1)
 		ft_putchar_fd('P', fd);
-	else if (i == mlx->height / 2)
-		ft_putchar_fd('C', fd);
 	else if (i == mlx->height - 2 && j == mlx->width - 3)
 		ft_putchar_fd('E', fd);
+	else if (i == mlx->height / 2)
+		ft_putchar_fd('C', fd);
 	else
 		ft_putchar_fd('0', fd);
 }
@@ -32,9 +32,7 @@ void	make_end_map(t_mlx *mlx)
 	{
 		j = -1;
 		while (++j < mlx->width - 1)
-		{
 			check_end_val(mlx, i, j, fd);
-		}
 		ft_putchar_fd('\n', fd);
 	}
 }
@@ -46,7 +44,11 @@ void	push_map(t_mlx *mlx, char *name)
 
 	m = malloc(sizeof(t_map));
 	name = ft_strjoin("./map/", name);
-	set_map(m, name);
+	if (set_map(m, name) == FALSE)
+	{
+		ft_putstr_fd("ERROR: Value Error in map_file!!!\n", STDOUT_FILENO);
+		exit(1);
+	}
 	m->next = NULL;
 	tmp = mlx->map;
 	if (tmp == NULL)
