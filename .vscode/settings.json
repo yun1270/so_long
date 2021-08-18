@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "__string": "c",
-        "ios": "c",
-        "typeinfo": "c",
-        "so_long.h": "c",
-        "mlx.h": "c"
-    }
-}
