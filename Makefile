@@ -14,8 +14,8 @@ OBJS	= $(SRCS:.c=.o)
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 MFLAGS	= -I. -Lmlx -lmlx -framework OpenGL -framework Appkit
-INCS	= -I includes -I libft
-LFT		= -L libft -lft -lncurses
+INCS	= -I libft
+LFT		= -L libft -lft
 
 all : $(NAME)
 

@@ -24,6 +24,7 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
+# define KEY_Q 12
 
 /* 맵에 대한 정보 */
 typedef struct s_map

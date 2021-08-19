@@ -86,7 +86,7 @@ int	key_press(int keycode, t_mlx *mlx)
 		xy = check_xy(mlx, mlx->map, 0, 1);
 	if (keycode == KEY_W)
 		xy = check_xy(mlx, mlx->map, 0, -1);
-	if (keycode == KEY_ESC)
+	if (keycode == KEY_ESC || keycode == KEY_Q)
 		exit(0);
 	if (xy == SUCCESS && mlx->map->next != NULL)
 		change_move(mlx);
