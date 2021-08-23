@@ -15,7 +15,7 @@ int	change_map(t_mlx *mlx, t_map *map, int x, int y)
 		put_img(mlx, mlx->player[1].img, map->player_x, map->player_y);
 	if (y == 1 || y == -1)
 		put_img(mlx, mlx->player[0].img, map->player_x, map->player_y);
-	return (0);
+	return (SUCCESS);
 }
 
 int	check_xy(t_mlx *mlx, t_map *map, int x, int y)
@@ -69,7 +69,7 @@ int	exit_map(t_mlx *mlx)
 		put_img(mlx, mlx->alpha[1].img, 2, (mlx->height + 2));
 		put_img(mlx, mlx->alpha[7].img, 3, (mlx->height + 2));
 		put_img(mlx, mlx->alpha[6].img, 4, (mlx->height + 2));
-		put_img(mlx, mlx->cat[0].img, 6, (mlx->height + 2));
+		put_img(mlx, mlx->cat[0].img, 4, (mlx->height + 1));
 	}
 	return (SUCCESS);
 }
@@ -91,7 +91,7 @@ int	key_press(int keycode, t_mlx *mlx)
 	if (xy == SUCCESS && mlx->map->next != NULL)
 		change_move(mlx);
 	if (mlx->map->item == 0 && mlx->map->next == NULL)
-		put_img(mlx, mlx->cat[1].img, 6, (mlx->height + 2));
+		put_img(mlx, mlx->cat[1].img, 4, (mlx->height + 1));
 	if (xy == 2)
 		exit_map(mlx);
 	return (SUCCESS);

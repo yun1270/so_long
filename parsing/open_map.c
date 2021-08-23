@@ -11,8 +11,13 @@ int	open_file(char *name)
 	fd = open(name, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("ERROR: Unable to read map_file!\n", STDOUT_FILENO);
-		exit(1);
+		name = ft_strjoin("./map/", name);
+		fd = open(name, O_RDONLY);
+		if (fd < 0)
+		{
+			ft_putstr_fd("ERROR: Unable to read map_file!\n", STDOUT_FILENO);
+			exit(1);
+		}
 	}
 	return (fd);
 }
@@ -65,13 +70,18 @@ int	open_map(t_map *m, char *name)
 	char	*line;
 	int		i;
 	int		fd;
+	int		flag;
 
 	i = 0;
+	flag = 0;
 	fd = open_file(name);
 	while (get_next_line(fd, &line) > 0)
 	{
-		in_line(m, line, i, i);
-		i++;
+		if (ft_strcmp(line, "\0") != 0)
+		{
+			flag = in_line(m, line, i, flag);
+			i++;
+		}
 		free(line);
 	}
 	if (in_line(m, line, i, 0) == 1)

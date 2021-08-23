@@ -12,14 +12,19 @@ int	key_exit(int keycode, t_mlx *mlx)
 	exit(0);
 }
 
-int	main(void)
+int	main(int ac, char *av[])
 {
 	t_mlx	*mlx;
 
+	if (ac == 1)
+	{
+		ft_putstr_fd("ERROR: Need map_file!\n", STDOUT_FILENO);
+		exit(0);
+	}
 	mlx = malloc(sizeof(t_mlx));
 	mlx->mlx = mlx_init();
 	set_img(mlx);
-	all_map(mlx);
+	all_map(mlx, av);
 	mlx->win = mlx_new_window(mlx->mlx, SIZE * mlx->width,
 			SIZE * (mlx->height + 4), "so_long");
 	make_map(mlx);

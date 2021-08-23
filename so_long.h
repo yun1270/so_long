@@ -73,7 +73,7 @@ void	set_img(t_mlx *mlx);
 int		set_map(t_map *map, char *name);
 int		key_press(int keycode, t_mlx *mlx);
 int		make_map(t_mlx *mlx);
-int		all_map(t_mlx *mlx);
+int		all_map(t_mlx *mlx, char *av[]);
 int		open_map(t_map *m, char *name);
 
 #endif

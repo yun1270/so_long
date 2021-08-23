@@ -43,7 +43,6 @@ void	push_map(t_mlx *mlx, char *name)
 	t_map	*m;
 
 	m = malloc(sizeof(t_map));
-	name = ft_strjoin("./map/", name);
 	if (set_map(m, name) == FALSE)
 	{
 		ft_putstr_fd("ERROR: Value Error in map_file!!!\n", STDOUT_FILENO);
@@ -61,14 +60,15 @@ void	push_map(t_mlx *mlx, char *name)
 	}
 }
 
-int	all_map(t_mlx *mlx)
+int	all_map(t_mlx *mlx, char *av[])
 {
 	t_map	*tmp;
+	int		i;
 
 	mlx->map = NULL;
-	push_map(mlx, "map0.ber");
-	push_map(mlx, "map1.ber");
-	push_map(mlx, "map2.ber");
+	i = 0;
+	while (av[++i])
+		push_map(mlx, av[i]);
 	tmp = mlx->map;
 	mlx->width = tmp->width;
 	mlx->height = tmp->height;
