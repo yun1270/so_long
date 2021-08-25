@@ -50,7 +50,8 @@ SRCS = ft_memset.c \
 		ft_putnbr_fd.c\
 		ft_strdel.c\
 		ft_strstr.c\
-		ft_strcmp.c
+		ft_strcmp.c\
+		ft_strtok.c
 SRCS_B = ft_lstnew.c \
 		 ft_lstadd_front.c \
 		 ft_lstsize.c \

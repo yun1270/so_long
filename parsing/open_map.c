@@ -5,7 +5,9 @@ int	open_file(char *name)
 	char	*file;
 	int		fd;
 
-	file = ft_strstr(name, ".ber");
+	file = ft_strtok(name, '.');
+	if (file == 0)
+		return (FALSE);
 	if (ft_strcmp(file, ".ber") != 0)
 		return (FALSE);
 	fd = open(name, O_RDONLY);
@@ -75,6 +77,8 @@ int	open_map(t_map *m, char *name)
 	i = 0;
 	flag = 0;
 	fd = open_file(name);
+	if (fd == FALSE)
+		return (FALSE);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (ft_strcmp(line, "\0") != 0)

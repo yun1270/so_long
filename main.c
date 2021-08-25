@@ -5,11 +5,11 @@ void	put_img(t_mlx *mlx, void *img, int x, int y)
 	mlx_put_image_to_window(mlx->mlx, mlx->win, img, x * SIZE, y * SIZE);
 }
 
-int	key_exit(int keycode, t_mlx *mlx)
+int	key_exit(int keycode, int n)
 {
-	if (keycode == KEY_ESC && mlx != NULL)
-		free(mlx);
-	exit(0);
+	if (keycode == 17)
+		exit(n);
+	exit(n);
 }
 
 int	main(int ac, char *av[])
@@ -29,7 +29,7 @@ int	main(int ac, char *av[])
 			SIZE * (mlx->height + 4), "so_long");
 	make_map(mlx);
 	mlx_hook(mlx->win, X_EVENT_KEY_PRESS, 0, key_press, mlx);
-	mlx_hook(mlx->win, X_EVENT_KEY_EXIT, 0, key_exit, mlx);
+	mlx_hook(mlx->win, X_EVENT_KEY_EXIT, 0, key_exit, 0);
 	mlx_loop(mlx->mlx);
 	exit(1);
 }
