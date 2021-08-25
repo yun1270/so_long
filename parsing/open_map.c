@@ -5,7 +5,7 @@ int	open_file(char *name)
 	char	*file;
 	int		fd;
 
-	file = ft_strtok(name, '.');
+	file = ft_strstr(name, ".ber");
 	if (file == 0)
 		return (FALSE);
 	if (ft_strcmp(file, ".ber") != 0)
@@ -90,7 +90,10 @@ int	open_map(t_map *m, char *name)
 	}
 	if (in_line(m, line, i, 0) == 1)
 		m->map[++i] = NULL;
+	m->map[i] = NULL;
 	free(line);
+	if (map_value(m->map[i - 1], 0) == FALSE)
+		return (FALSE);
 	close(fd);
 	return (SUCCESS);
 }
