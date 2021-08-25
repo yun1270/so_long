@@ -67,6 +67,16 @@ int	in_line(t_map *m, char *line, int i, int flag)
 	return (1);
 }
 
+int	check_end(t_map *m, char *line, int i)
+{
+	if (in_line(m, line, i, 0) == 1)
+		m->map[++i] = NULL;
+	m->map[i] = NULL;
+	if (map_value(m->map[i - 1], 0) == FALSE)
+		return (FALSE);
+	return (SUCCESS);
+}
+
 int	open_map(t_map *m, char *name)
 {
 	char	*line;
@@ -88,12 +98,9 @@ int	open_map(t_map *m, char *name)
 		}
 		free(line);
 	}
-	if (in_line(m, line, i, 0) == 1)
-		m->map[++i] = NULL;
-	m->map[i] = NULL;
-	free(line);
-	if (map_value(m->map[i - 1], 0) == FALSE)
+	if (check_end(m, line, i) == FALSE)
 		return (FALSE);
+	free(line);
 	close(fd);
 	return (SUCCESS);
 }
